@@ -1,0 +1,73 @@
+/* .body-style {
+  background-color: azure;
+} */
+
+.header {
+  background-color: black;
+}
+
+.header h1 {
+  padding: 1rem;
+  text-align: center;
+  color: whitesmoke;
+}
+
+.app-container {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.search-form {
+  position: absolute;
+  top: 30%;
+  left: 15%;
+}
+
+.search-bar {
+  width: 80%;
+}
+
+.search-input {
+  width: 60vw;
+  font-size: 1.2rem !important;
+}
+
+#spinner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+}
+.image-list {
+  position: absolute;
+  top: 12%;
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); /** creates set of columns, 
+    auto-fill : grid system decides how many columns**/
+  grid-gap: 0 0px;
+  grid-auto-rows: 5.2px; /** how tall each row will be **/
+  grid-auto-flow: dense;
+}
+
+.image-list img {
+  width: 200px;
+}
+
+@media (min-width: 992px) {
+  /* .body-style {
+    width: 60vw;
+    margin: 0 auto;
+    top: 20%;
+  } */
+}

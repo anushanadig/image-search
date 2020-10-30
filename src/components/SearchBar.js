@@ -1,33 +1,40 @@
 import React from "react";
+// import InputGroup from "react-bootstrap/InputGroup";
+// import Button from "react-bootstrap/Button";
+// import FormControl from "react-bootstrap/FormControl";
 
 class SearchBar extends React.Component {
   state = { term: "" };
 
-  //   constructor(props) {
-  //     super(props);
-  //     this.onFormSubmit = this.onFormSubmit.bind(this);
-  //   }
-
-  onFormSubmit = e => {
+  onFormSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit(this.state.term);
   };
 
   render() {
+    let style = !this.props.showBackground ? { top: "5%" } : {};
     return (
-      <div className="ui segment">
-        <form onSubmit={this.onFormSubmit} className="ui form">
-          {/* <form onSubmit={()=>this.onFormSubmit()} className="ui form"></form> */}
-          <div className="field">
-            <label>Image Search</label>
-            <input
-              type="text"
-              value={this.state.term}
-              onChange={e => this.setState({ term: e.target.value })}
-            />
+      <>
+        <form
+          class="form-inline d-flex justify-content-center md-form form-sm search-form"
+          onSubmit={this.onFormSubmit}
+          style={style}
+        >
+          <div class="ui search search-bar">
+            <div class="ui icon input search-input">
+              <input
+                class="prompt"
+                type="text"
+                placeholder="Search for high resolution images"
+                value={this.state.term}
+                onChange={(e) => this.setState({ term: e.target.value })}
+              />
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
           </div>
         </form>
-      </div>
+      </>
     );
   }
 }
