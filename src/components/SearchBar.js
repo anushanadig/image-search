@@ -1,13 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 
 export default function SearchBar() {
-  const {
-    onSearchSubmit,
-    showBackground,
-    setShowBackground,
-    isValid,
-  } = useContext(AppContext);
+  const { onSearchSubmit, showBackground, isValid } = useContext(AppContext);
 
   const [term, setTerm] = useState("");
 

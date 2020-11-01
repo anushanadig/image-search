@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import SearchBar from "./SearchBar";
 import ImageList from "./ImageList";
 import "../styles/style.css";
-import Spinner from "./Spinner";
 import { Route, HashRouter } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 
