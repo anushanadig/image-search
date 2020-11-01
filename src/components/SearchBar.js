@@ -1,42 +1,44 @@
-import React from "react";
-// import InputGroup from "react-bootstrap/InputGroup";
-// import Button from "react-bootstrap/Button";
-// import FormControl from "react-bootstrap/FormControl";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../context/AppContext";
 
-class SearchBar extends React.Component {
-  state = { term: "" };
+export default function SearchBar() {
+  const {
+    onSearchSubmit,
+    showBackground,
+    setShowBackground,
+    isValid,
+  } = useContext(AppContext);
 
-  onFormSubmit = (e) => {
+  const [term, setTerm] = useState("");
+
+  const onFormSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state.term);
+    onSearchSubmit(term);
   };
 
-  render() {
-    let style = !this.props.showBackground ? { top: "5%" } : {};
-    return (
-      <>
-        <form
-          class="form-inline d-flex justify-content-center md-form form-sm search-form"
-          onSubmit={this.onFormSubmit}
-          style={style}
-        >
-          <div class="ui search search-bar">
-            <div class="ui icon input search-input">
-              <input
-                class="prompt"
-                type="text"
-                placeholder="Search for high resolution images"
-                value={this.state.term}
-                onChange={(e) => this.setState({ term: e.target.value })}
-              />
-              <i class="search icon"></i>
-            </div>
-            <div class="results"></div>
+  let style = !showBackground ? { transform: "translateY(-16rem)" } : {};
+  return (
+    <>
+      <form
+        className="form-inline d-flex justify-content-center md-form form-sm search-form"
+        onSubmit={onFormSubmit}
+        style={style}
+      >
+        <div className="ui search search-bar">
+          <div className="ui icon input search-input">
+            <input
+              className="prompt"
+              type="text"
+              placeholder="Search for high resolution images"
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
+            />
+            <i className="search icon"></i>
           </div>
-        </form>
-      </>
-    );
-  }
+          <div className="results"></div>
+        </div>
+        {!isValid && <h2>Please input valid search term!</h2>}
+      </form>
+    </>
+  );
 }
-
-export default SearchBar;

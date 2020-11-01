@@ -1,13 +1,15 @@
-/* .body-style {
-  background-color: azure;
-} */
+html {
+  font-size: 10px;
+}
 
 .header {
   background-color: black;
+  width: 100vw;
 }
 
 .header h1 {
   padding: 1rem;
+  font-size: 3.8rem;
   text-align: center;
   color: whitesmoke;
 }
@@ -27,17 +29,23 @@
 
 .search-form {
   position: absolute;
-  top: 30%;
-  left: 15%;
+  top: 30rem;
+  width: 80vw;
+  transition: transform 300ms;
+}
+
+.search-form h2 {
+  color: red;
+  margin-top: 1rem;
 }
 
 .search-bar {
-  width: 80%;
+  width: 100%;
 }
 
 .search-input {
-  width: 60vw;
-  font-size: 1.2rem !important;
+  width: 100%;
+  font-size: 1.8rem !important;
 }
 
 #spinner {
@@ -47,17 +55,16 @@
 }
 .image-list {
   position: absolute;
-  top: 12%;
+  top: 20rem;
   width: 80vw;
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(200px, 1fr)
-  ); /** creates set of columns, 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /** creates set of columns, 
     auto-fill : grid system decides how many columns**/
   grid-gap: 0 0px;
   grid-auto-rows: 5.2px; /** how tall each row will be **/
   grid-auto-flow: dense;
+  justify-items: center;
 }
 
 .image-list img {

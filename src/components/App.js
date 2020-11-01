@@ -1,47 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchBar from "./SearchBar";
-import unsplash from "../api/unsplash";
 import ImageList from "./ImageList";
 import "../styles/style.css";
 import Spinner from "./Spinner";
+import { Route, HashRouter } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
-class App extends React.Component {
-  state = { images: [], loading: false, showBackground: true };
-  async onSearchSubmit(term) {
-    this.setState({ loading: true, showBackground: false });
-    const response = await unsplash.get("/search/photos", {
-      params: {
-        query: term,
-        per_page: 20,
-      },
-    });
+function App() {
+  const { showBackground } = useContext(AppContext);
 
-    this.setState({
-      images: response.data.results,
-      loading: false,
-    });
-  }
-  render() {
-    let bg = !this.state.showBackground ? { background: "none" } : {};
-    return (
-      <>
+  let bg = !showBackground ? { background: "none" } : {};
+  return (
+    <div className="app-container" style={bg}>
+      <HashRouter>
         <header className="header">
-          <h1>Unspalsh Clone</h1>
+          <h1>Unsplash Clone</h1>
         </header>
-        <div className="app-container" style={bg}>
-          <SearchBar
-            showBackground={this.state.showBackground}
-            onSubmit={(...args) => this.onSearchSubmit(...args)}
-          />
-          {this.state.loading ? (
-            <Spinner />
-          ) : (
-            <ImageList images={this.state.images} className="images" />
-          )}
-        </div>
-      </>
-    );
-  }
+
+        <Route path="/" component={SearchBar} />
+        <Route path="/images" exact component={ImageList} />
+      </HashRouter>
+    </div>
+  );
 }
 
 export default App;

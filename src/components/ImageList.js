@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import ImageCard from "./ImageCard";
+import { AppContext } from "../context/AppContext";
+import Spinner from "./Spinner";
 
-const ImageList = ({ images }) => {
-  const imagelist = images.map(image => (
-    <ImageCard key={image.id} image={image} />
-  ));
+function ImageList() {
+  const { loading, images } = useContext(AppContext);
+  let imagelist = [];
+  if (images) {
+    imagelist = images.map((image) => (
+      <ImageCard key={image.id} image={image} />
+    ));
+  }
 
-  return <div className="image-list">{imagelist}</div>;
-};
+  return loading ? <Spinner /> : <div className="image-list">{imagelist}</div>;
+}
 
 export default ImageList;
